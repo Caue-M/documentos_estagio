@@ -1,11 +1,12 @@
+```html id="bjy7xk"
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentação de Estágio</title>
+
     <style>
-        /* Estilos básicos da página */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -58,9 +59,7 @@
             margin-top: 20px;
         }
         
-        /* Estilo de cada "miniatura" de documento */
         .doc-item {
-            cursor: pointer;
             border: 2px solid #ddd;
             border-radius: 12px;
             background: #fff;
@@ -84,6 +83,7 @@
             border: 1px solid #eee;
             border-radius: 10px;
             background: #fafbff;
+            cursor: pointer;
         }
 
         .doc-item p { 
@@ -91,6 +91,50 @@
             margin: 12px 0 0; 
             font-weight: 700; 
             color: #222;
+        }
+
+        .doc-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .view-btn,
+        .download-btn {
+            border: none;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .view-btn {
+            background: #1a73e8;
+            color: #fff;
+        }
+
+        .download-btn {
+            background: #eef3ff;
+            color: #1a73e8;
+            border: 1px solid #cbdcff;
+        }
+
+        .view-btn:hover,
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .view-btn:hover {
+            background: #0f5fc4;
+        }
+
+        .download-btn:hover {
+            background: #dfeaff;
         }
 
         .docs-section {
@@ -120,6 +164,11 @@
             background: #f9f9ff;
             border: 1px solid #e0e4ef;
             border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .docs-list a {
@@ -131,10 +180,17 @@
         .docs-list a:hover {
             text-decoration: underline;
         }
+
+        .doc-download-link {
+            font-size: 0.9rem;
+            background: #eef3ff;
+            border: 1px solid #cbdcff;
+            border-radius: 8px;
+            padding: 6px 10px;
+        }
         
-        /* Fundo escuro do Modal (Visualizador) */
         #modal {
-            display: none; /* Escondido por padrão */
+            display: none;
             position: fixed; 
             top: 0; 
             left: 0; 
@@ -144,23 +200,21 @@
             justify-content: center; 
             align-items: center;
             z-index: 1000; 
-            overflow: auto; /* Adiciona barra de rolagem se der muito zoom */
+            overflow: auto;
         }
 
         #modal.active { 
             display: flex; 
         }
         
-        /* Imagem aberta dentro do modal */
         #modal-img {
-            max-height: 90vh; /* Ocupa no máximo 90% da altura da tela inicialmente */
+            max-height: 90vh;
             max-width: 90vw;
-            transition: transform 0.1s ease-out; /* Deixa o zoom mais suave */
+            transition: transform 0.1s ease-out;
             cursor: grab;
             touch-action: none;
         }
         
-        /* Botão de Fechar */
         .close-btn {
             position: fixed; 
             top: 20px; 
@@ -176,8 +230,27 @@
         .close-btn:hover { 
             color: #ff4a4a; 
         }
+
+        .modal-download-btn {
+            position: fixed;
+            top: 28px;
+            right: 90px;
+            z-index: 1001;
+            background: #ffffff;
+            color: #1a73e8;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid #d9e4ff;
+        }
+
+        .modal-download-btn:hover {
+            background: #eef3ff;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="content-wrapper">
@@ -189,24 +262,100 @@
             </div>
 
             <div class="gallery">
-                <div class="doc-item" onclick="openModal('imagens/Diagrama de Sequência.svg')">
-                    <img src="imagens/Diagrama de Sequência.svg" alt="Diagrama de Sequência">
+                <div class="doc-item">
+                    <img 
+                        src="imagens/Diagrama de Sequência.svg" 
+                        alt="Diagrama de Sequência"
+                        onclick="openModal('imagens/Diagrama de Sequência.svg')"
+                    >
+
                     <p>Diagrama de Sequência</p>
+
+                    <div class="doc-actions">
+                        <button class="view-btn" onclick="openModal('imagens/Diagrama de Sequência.svg')">
+                            Visualizar
+                        </button>
+
+                        <a 
+                            class="download-btn" 
+                            href="imagens/Diagrama de Sequência.svg" 
+                            download
+                        >
+                            Download
+                        </a>
+                    </div>
                 </div>
 
-                <div class="doc-item" onclick="openModal('imagens/Caso de uso.svg')">
-                    <img src="imagens/Caso de uso.svg" alt="Caso de Uso">
+                <div class="doc-item">
+                    <img 
+                        src="imagens/Caso de uso.svg" 
+                        alt="Caso de Uso"
+                        onclick="openModal('imagens/Caso de uso.svg')"
+                    >
+
                     <p>Caso de Uso</p>
+
+                    <div class="doc-actions">
+                        <button class="view-btn" onclick="openModal('imagens/Caso de uso.svg')">
+                            Visualizar
+                        </button>
+
+                        <a 
+                            class="download-btn" 
+                            href="imagens/Caso de uso.svg" 
+                            download
+                        >
+                            Download
+                        </a>
+                    </div>
                 </div>
 
-                <div class="doc-item" onclick="openModal('imagens/DER.png')">
-                    <img src="imagens/DER.png" alt="DER do Projeto">
+                <div class="doc-item">
+                    <img 
+                        src="imagens/DER.png" 
+                        alt="DER do Projeto"
+                        onclick="openModal('imagens/DER.png')"
+                    >
+
                     <p>DER do Projeto</p>
+
+                    <div class="doc-actions">
+                        <button class="view-btn" onclick="openModal('imagens/DER.png')">
+                            Visualizar
+                        </button>
+
+                        <a 
+                            class="download-btn" 
+                            href="imagens/DER.png" 
+                            download
+                        >
+                            Download
+                        </a>
+                    </div>
                 </div>
 
-                <div class="doc-item" onclick="openModal('imagens/DiagramaDeClasses2.drawio.jpeg')">
-                    <img src="imagens/DiagramaDeClasses2.drawio.jpeg" alt="Diagrama de Classes">
+                <div class="doc-item">
+                    <img 
+                        src="imagens/DiagramaDeClasses2.webp" 
+                        alt="Diagrama de Classes"
+                        onclick="openModal('imagens/DiagramaDeClasses2.webp')"
+                    >
+
                     <p>Diagrama de Classes</p>
+
+                    <div class="doc-actions">
+                        <button class="view-btn" onclick="openModal('imagens/DiagramaDeClasses2.webp')">
+                            Visualizar
+                        </button>
+
+                        <a 
+                            class="download-btn" 
+                            href="imagens/DiagramaDeClasses2.webp" 
+                            download
+                        >
+                            Download
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -217,14 +366,52 @@
             </div>
 
             <div class="gallery">
-                <div class="doc-item" onclick="openModal('imagens/as-is.jpg')">
-                    <img src="imagens/as-is.jpg" alt="Fluxo As-Is">
+                <div class="doc-item">
+                    <img 
+                        src="imagens/as-is.jpg" 
+                        alt="Fluxo As-Is"
+                        onclick="openModal('imagens/as-is.jpg')"
+                    >
+
                     <p>Fluxo As-Is</p>
+
+                    <div class="doc-actions">
+                        <button class="view-btn" onclick="openModal('imagens/as-is.jpg')">
+                            Visualizar
+                        </button>
+
+                        <a 
+                            class="download-btn" 
+                            href="imagens/as-is.jpg" 
+                            download
+                        >
+                            Download
+                        </a>
+                    </div>
                 </div>
 
-                <div class="doc-item" onclick="openModal('imagens/subfluxo.jpg')">
-                    <img src="imagens/subfluxo.jpg" alt="Sub-fluxo">
+                <div class="doc-item">
+                    <img 
+                        src="imagens/subfluxo.jpg" 
+                        alt="Sub-fluxo"
+                        onclick="openModal('imagens/subfluxo.jpg')"
+                    >
+
                     <p>Sub-fluxo</p>
+
+                    <div class="doc-actions">
+                        <button class="view-btn" onclick="openModal('imagens/subfluxo.jpg')">
+                            Visualizar
+                        </button>
+
+                        <a 
+                            class="download-btn" 
+                            href="imagens/subfluxo.jpg" 
+                            download
+                        >
+                            Download
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -233,7 +420,7 @@
             <h2>Documentos</h2>
 
             <p style="text-align:center; color:#666; margin-bottom:20px;">
-                Clique em um documento para abrir em nova aba.
+                Clique em um documento para abrir em nova aba ou fazer download.
             </p>
 
             <ul class="docs-list">
@@ -241,11 +428,19 @@
                     <a href="documentos/especificacao_suplementar.docx.pdf" target="_blank" rel="noopener">
                         Especificação Suplementar
                     </a>
+
+                    <a class="doc-download-link" href="documentos/especificacao_suplementar.docx.pdf" download>
+                        Download
+                    </a>
                 </li>
 
                 <li>
                     <a href="documentos/Especificação_Gerenciar_Comanda.docx.pdf" target="_blank" rel="noopener">
                         Especificação Gerenciar Comanda
+                    </a>
+
+                    <a class="doc-download-link" href="documentos/Especificação_Gerenciar_Comanda.docx.pdf" download>
+                        Download
                     </a>
                 </li>
 
@@ -253,11 +448,19 @@
                     <a href="documentos/Especificação_Gerenciar_Funcionário.docx.pdf" target="_blank" rel="noopener">
                         Especificação Gerenciar Funcionário
                     </a>
+
+                    <a class="doc-download-link" href="documentos/Especificação_Gerenciar_Funcionário.docx.pdf" download>
+                        Download
+                    </a>
                 </li>
 
                 <li>
                     <a href="documentos/Glossario_v2.docx.pdf" target="_blank" rel="noopener">
                         Glossário
+                    </a>
+
+                    <a class="doc-download-link" href="documentos/Glossario_v2.docx.pdf" download>
+                        Download
                     </a>
                 </li>
 
@@ -265,17 +468,29 @@
                     <a href="documentos/Pedido_do_investidor.pdf" target="_blank" rel="noopener">
                         Pedido do Investidor
                     </a>
+
+                    <a class="doc-download-link" href="documentos/Pedido_do_investidor.pdf" download>
+                        Download
+                    </a>
                 </li>
 
                 <li>
                     <a href="documentos/Plano_De_Estagio_Pedemais.docx.pdf" target="_blank" rel="noopener">
                         Plano de Estágio Pedemais
                     </a>
+
+                    <a class="doc-download-link" href="documentos/Plano_De_Estagio_Pedemais.docx.pdf" download>
+                        Download
+                    </a>
                 </li>
 
                 <li>
                     <a href="documentos/Visao_Informal.pdf" target="_blank" rel="noopener">
                         Visão Informal
+                    </a>
+
+                    <a class="doc-download-link" href="documentos/Visao_Informal.pdf" download>
+                        Download
                     </a>
                 </li>
             </ul>
@@ -284,12 +499,18 @@
 
     <div id="modal">
         <span class="close-btn" onclick="closeModal()">&times;</span>
+
+        <a id="modal-download" class="modal-download-btn" href="#" download>
+            Download
+        </a>
+
         <img id="modal-img" src="" alt="Documento Expandido">
     </div>
 
     <script>
         const modal = document.getElementById('modal');
         const modalImg = document.getElementById('modal-img');
+        const modalDownload = document.getElementById('modal-download');
 
         let currentZoom = 1;
         let panX = 0;
@@ -304,6 +525,8 @@
 
         function openModal(imageSrc) {
             modalImg.src = imageSrc;
+            modalDownload.href = imageSrc;
+
             modal.classList.add('active');
 
             currentZoom = 1;
@@ -316,6 +539,7 @@
         function closeModal() {
             modal.classList.remove('active');
             modalImg.src = '';
+            modalDownload.href = '#';
         }
 
         modal.addEventListener('click', function(e) {
@@ -376,3 +600,4 @@
 
 </body>
 </html>
+```
