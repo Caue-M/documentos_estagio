@@ -9,6 +9,7 @@
         *, *::before, *::after {
             box-sizing: border-box;
         }
+
         body { 
             font-family: sans-serif; 
             padding: 20px; 
@@ -17,8 +18,17 @@
             min-height: 100vh;
             color: #333;
         }
-        h1 { text-align: center; color: #333; margin-bottom: 10px; }
-        h2 { color: #333; margin-bottom: 10px; }
+
+        h1 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 10px; 
+        }
+
+        h2 { 
+            color: #333; 
+            margin-bottom: 10px; 
+        }
         
         .content-wrapper {
             max-width: 1200px;
@@ -33,11 +43,13 @@
             border: 1px solid #e0e2ea;
             box-shadow: 0 10px 30px rgba(0,0,0,0.04);
         }
+
         .section-title {
             text-align: center;
             font-size: 1.3rem;
             margin-bottom: 18px;
         }
+
         .gallery { 
             display: flex; 
             gap: 20px; 
@@ -57,11 +69,13 @@
             width: 220px;
             text-align: center;
         }
+
         .doc-item:hover { 
             transform: translateY(-4px) scale(1.03); 
             border-color: #007bff; 
             box-shadow: 0 10px 30px rgba(0,123,255,0.12);
         }
+
         .doc-item img { 
             width: 100%;
             height: 180px; 
@@ -71,7 +85,13 @@
             border-radius: 10px;
             background: #fafbff;
         }
-        .doc-item p { text-align: center; margin: 12px 0 0; font-weight: 700; color: #222;}
+
+        .doc-item p { 
+            text-align: center; 
+            margin: 12px 0 0; 
+            font-weight: 700; 
+            color: #222;
+        }
 
         .docs-section {
             margin-top: 50px;
@@ -80,11 +100,13 @@
             border-radius: 12px;
             padding: 20px;
         }
+
         .docs-section h2 {
             margin-top: 0;
             color: #333;
             text-align: center;
         }
+
         .docs-list {
             display: grid;
             gap: 10px;
@@ -92,17 +114,20 @@
             padding: 0;
             margin: 0;
         }
+
         .docs-list li {
             padding: 12px 16px;
             background: #f9f9ff;
             border: 1px solid #e0e4ef;
             border-radius: 8px;
         }
+
         .docs-list a {
             text-decoration: none;
             color: #1a73e8;
             font-weight: 600;
         }
+
         .docs-list a:hover {
             text-decoration: underline;
         }
@@ -111,14 +136,20 @@
         #modal {
             display: none; /* Escondido por padrão */
             position: fixed; 
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
             background: rgba(0,0,0,0.85); 
             justify-content: center; 
             align-items: center;
             z-index: 1000; 
             overflow: auto; /* Adiciona barra de rolagem se der muito zoom */
         }
-        #modal.active { display: flex; }
+
+        #modal.active { 
+            display: flex; 
+        }
         
         /* Imagem aberta dentro do modal */
         #modal-img {
@@ -132,11 +163,19 @@
         /* Botão de Fechar */
         .close-btn {
             position: fixed; 
-            top: 20px; right: 30px;
-            color: white; font-size: 40px; font-weight: bold; 
-            cursor: pointer; user-select: none; z-index: 1001;
+            top: 20px; 
+            right: 30px;
+            color: white; 
+            font-size: 40px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            user-select: none; 
+            z-index: 1001;
         }
-        .close-btn:hover { color: #ff4a4a; }
+
+        .close-btn:hover { 
+            color: #ff4a4a; 
+        }
     </style>
 </head>
 <body>
@@ -145,7 +184,10 @@
         <h1>Minha Documentação de Estágio</h1>
 
         <section class="image-section">
-            <div class="section-title"><h2>Diagramas</h2></div>
+            <div class="section-title">
+                <h2>Diagramas</h2>
+            </div>
+
             <div class="gallery">
                 <div class="doc-item" onclick="openModal('imagens/Diagrama de Sequência.svg')">
                     <img src="imagens/Diagrama de Sequência.svg" alt="Diagrama de Sequência">
@@ -161,11 +203,19 @@
                     <img src="imagens/DER.png" alt="DER do Projeto">
                     <p>DER do Projeto</p>
                 </div>
+
+                <div class="doc-item" onclick="openModal('imagens/DiagramaDeClasses2.drawio.jpeg')">
+                    <img src="imagens/DiagramaDeClasses2.drawio.jpeg" alt="Diagrama de Classes">
+                    <p>Diagrama de Classes</p>
+                </div>
             </div>
         </section>
 
         <section class="image-section">
-            <div class="section-title"><h2>Fluxos do Projeto</h2></div>
+            <div class="section-title">
+                <h2>Fluxos do Projeto</h2>
+            </div>
+
             <div class="gallery">
                 <div class="doc-item" onclick="openModal('imagens/as-is.jpg')">
                     <img src="imagens/as-is.jpg" alt="Fluxo As-Is">
@@ -180,18 +230,57 @@
         </section>
 
         <section class="docs-section">
-        <h2>Documentos</h2>
-        <p style="text-align:center; color:#666; margin-bottom:20px;">Clique em um documento para abrir em nova aba.</p>
-        <ul class="docs-list">
-            <li><a href="documentos/especificacao_suplementar.docx.pdf" target="_blank" rel="noopener">Especificação Suplementar</a></li>
-            <li><a href="documentos/Especificação_Gerenciar_Comanda.docx.pdf" target="_blank" rel="noopener">Especificação Gerenciar Comanda</a></li>
-            <li><a href="documentos/Especificação_Gerenciar_Funcionário.docx.pdf" target="_blank" rel="noopener">Especificação Gerenciar Funcionário</a></li>
-            <li><a href="documentos/Glossario_v2.docx.pdf" target="_blank" rel="noopener">Glossário</a></li>
-            <li><a href="documentos/Pedido_do_investidor.pdf" target="_blank" rel="noopener">Pedido do Investidor</a></li>
-            <li><a href="documentos/Plano_De_Estagio_Pedemais.docx.pdf" target="_blank" rel="noopener">Plano de Estágio Pedemais</a></li>
-            <li><a href="documentos/Visao_Informal.pdf" target="_blank" rel="noopener">Visão Informal</a></li>
-        </ul>
-    </section>
+            <h2>Documentos</h2>
+
+            <p style="text-align:center; color:#666; margin-bottom:20px;">
+                Clique em um documento para abrir em nova aba.
+            </p>
+
+            <ul class="docs-list">
+                <li>
+                    <a href="documentos/especificacao_suplementar.docx.pdf" target="_blank" rel="noopener">
+                        Especificação Suplementar
+                    </a>
+                </li>
+
+                <li>
+                    <a href="documentos/Especificação_Gerenciar_Comanda.docx.pdf" target="_blank" rel="noopener">
+                        Especificação Gerenciar Comanda
+                    </a>
+                </li>
+
+                <li>
+                    <a href="documentos/Especificação_Gerenciar_Funcionário.docx.pdf" target="_blank" rel="noopener">
+                        Especificação Gerenciar Funcionário
+                    </a>
+                </li>
+
+                <li>
+                    <a href="documentos/Glossario_v2.docx.pdf" target="_blank" rel="noopener">
+                        Glossário
+                    </a>
+                </li>
+
+                <li>
+                    <a href="documentos/Pedido_do_investidor.pdf" target="_blank" rel="noopener">
+                        Pedido do Investidor
+                    </a>
+                </li>
+
+                <li>
+                    <a href="documentos/Plano_De_Estagio_Pedemais.docx.pdf" target="_blank" rel="noopener">
+                        Plano de Estágio Pedemais
+                    </a>
+                </li>
+
+                <li>
+                    <a href="documentos/Visao_Informal.pdf" target="_blank" rel="noopener">
+                        Visão Informal
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </div>
 
     <div id="modal">
         <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -201,6 +290,7 @@
     <script>
         const modal = document.getElementById('modal');
         const modalImg = document.getElementById('modal-img');
+
         let currentZoom = 1;
         let panX = 0;
         let panY = 0;
@@ -215,22 +305,28 @@
         function openModal(imageSrc) {
             modalImg.src = imageSrc;
             modal.classList.add('active');
-            currentZoom = 1; // Reseta o zoom sempre que abrir uma imagem nova
+
+            currentZoom = 1;
             panX = 0;
             panY = 0;
+
             updateTransform();
         }
 
         function closeModal() {
             modal.classList.remove('active');
+            modalImg.src = '';
         }
 
         modal.addEventListener('click', function(e) {
-            if (e.target === modal) closeModal();
+            if (e.target === modal) {
+                closeModal();
+            }
         });
 
         modalImg.addEventListener('wheel', function(e) {
             e.preventDefault();
+
             const zoomSpeed = 0.15;
 
             if (e.deltaY < 0) {
@@ -240,30 +336,43 @@
             }
 
             currentZoom = Math.min(Math.max(0.5, currentZoom), 5);
+
             updateTransform();
         });
 
         modalImg.addEventListener('mousedown', function(e) {
             if (currentZoom <= 1) return;
+
             isDragging = true;
             dragStartX = e.clientX - panX;
             dragStartY = e.clientY - panY;
+
             modalImg.style.cursor = 'grabbing';
             e.preventDefault();
         });
 
         window.addEventListener('mousemove', function(e) {
             if (!isDragging) return;
+
             panX = e.clientX - dragStartX;
             panY = e.clientY - dragStartY;
+
             updateTransform();
         });
 
         window.addEventListener('mouseup', function() {
             if (!isDragging) return;
+
             isDragging = false;
             modalImg.style.cursor = 'grab';
         });
+
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
+
 </body>
 </html>
